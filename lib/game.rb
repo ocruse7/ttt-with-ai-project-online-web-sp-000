@@ -1,5 +1,7 @@
 class Game
+  
 	attr_accessor :board, :player_1, :player_2
+	
 	def initialize(player_1=Players::Human.new("X"), player_2=Players::Human.new("O"), board=Board.new)
 		@board = board
 		@player_1 = player_1
@@ -24,7 +26,6 @@ class Game
 	def turn
 		player = current_player
 		current_move = player.move(@board)
-		# binding.pry
 		if !@board.valid_move?(current_move)
 	 		turn
  		else
@@ -34,8 +35,8 @@ class Game
 	end
 
 	def full?
-    @board.cells.all? do |megatron|
-      megatron == "X" || megatron == "O"
+    @board.cells.all? do |cell|
+      cell == "X" || cell == "O"
     end
   end
 
@@ -50,11 +51,13 @@ class Game
   def draw?
     !won? && full?
   end
+  
 	def over?
     won? || full? || draw?
 	end
 
 	def winner
+	  
 		winface = won?
 		if won?
 			return @board.cells[winface[0]]
@@ -64,9 +67,11 @@ class Game
   end
 
   def play
+    
    until over?
       turn
    end
+   
    if won?
      winface = winner
      puts "Congratulations #{winface}!"
@@ -74,4 +79,5 @@ class Game
      puts "Cat's Game!"
    end
   end
+  
 end
