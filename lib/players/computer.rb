@@ -1,5 +1,6 @@
 module Players
   class Computer < Player
+		
 		def move(board)
 			move = nil
 			if board.cells.all?{|cell| cell == " "}
@@ -13,5 +14,6 @@ module Players
 			end
 			move
 		end
+	
 	end
 end
